@@ -25,18 +25,18 @@
     <script type="text/babel">
         const { useState, useEffect, useCallback } = React;
 
-        // --- 數據配置：更新為第二週單字表 ---
+        // --- 數據配置 ---
         const WORD_DATA = [
-            { word: "Adventure",  pos: "n./v.", chinese: "冒險" },
-            { word: "Delighted",  pos: "adj.",  chinese: "高興的" },
-            { word: "Dream",      pos: "n./v.", chinese: "夢想" },
-            { word: "Enjoy",      pos: "v.",    chinese: "享受" },
-            { word: "Grumbled",   pos: "v.",    chinese: "抱怨" },
-            { word: "Moonlight",  pos: "n.",    chinese: "月光" },
-            { word: "Neighbor",   pos: "n.",    chinese: "鄰居" },
-            { word: "Nighttime",  pos: "n.",    chinese: "深夜" },
-            { word: "Starry",     pos: "adj.",  chinese: "繁星點點的" },
-            { word: "Flashlight", pos: "n.",    chinese: "手電筒" },
+            { word: "amazing",  pos: "adj.",  chinese: "驚人的" },
+            { word: "force",    pos: "n./v.", chinese: "力量/強迫" },
+            { word: "measure",  pos: "v./n.", chinese: "測量/措施" },
+            { word: "objects",  pos: "n.",    chinese: "物體" },
+            { word: "proved",   pos: "v.",    chinese: "證明" },
+            { word: "speed",    pos: "n./v.", chinese: "速度/疾馳" },
+            { word: "true",     pos: "adj.",  chinese: "真實的" },
+            { word: "weight",   pos: "n.",    chinese: "重量" },
+            { word: "magnet",   pos: "n.",    chinese: "磁鐵" },
+            { word: "metal",    pos: "n.",    chinese: "金屬" },
         ];
 
         // 圖示組件
@@ -75,7 +75,7 @@
                             </button>
                         </div>
 
-                        {/* 反面: 單字意義面 */}
+                        {/* 反面: 單字意義面 (新增發音按鈕) */}
                         <div className="absolute inset-0 backface-hidden bg-white rounded-2xl shadow-xl border-4 border-indigo-500 flex flex-col items-center justify-between p-6 rotate-y-180 text-center">
                             <div className="flex flex-col items-center w-full mt-4">
                                 <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-md text-xs font-bold mb-3">{data.pos}</span>
@@ -84,6 +84,7 @@
                                 <p className="text-xl font-bold text-indigo-700">{data.chinese}</p>
                             </div>
                             
+                            {/* 反面新增的發音按鈕 */}
                             <button
                                 onClick={(e) => { e.stopPropagation(); speakFn(data.word); }}
                                 className="flex items-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-6 py-2.5 rounded-full border border-indigo-200 shadow-sm active:scale-95 transition-all mb-4"
@@ -114,7 +115,7 @@
                 }
             }, []);
 
-            // 發音邏輯 (免 API 版)
+            // 優化發音邏輯 (免 API 版)
             const speakWord = useCallback((word) => {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(word);
@@ -130,8 +131,8 @@
                     <div className="max-w-7xl mx-auto">
                         <header className="text-center mb-12">
                             <div className="inline-block bg-indigo-600 text-white px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-lg">海洋家</div>
-                            <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight italic">Weekly Flashcards</h1>
-                            <p className="text-slate-500 font-medium tracking-wide">互動式雙面發音系統</p>
+                            <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight italic">Science Flashcards</h1>
+                            <p className="text-slate-500 font-medium tracking-wide">雙面發音互動系統</p>
                             
                             {!isVoiceReady && (
                                 <p className="mt-4 text-amber-500 text-xs animate-pulse-soft font-bold">
@@ -149,7 +150,7 @@
                         <footer className="mt-20 text-center border-t border-slate-200 pt-8">
                             <p className="text-slate-400 text-xs font-bold uppercase tracking-widest leading-loose">
                                 海洋家 英語數位教材<br/>
-                                本週進度：10 組核心單字
+                                雙面皆可點擊發音 ・ 強化聽力連結
                             </p>
                         </footer>
                     </div>

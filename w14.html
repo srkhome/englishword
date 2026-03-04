@@ -25,18 +25,18 @@
     <script type="text/babel">
         const { useState, useEffect, useCallback } = React;
 
-        // --- 數據配置：更新為第二週單字表 ---
+        // --- 數據配置：更新為最新指定單字表 (文化與旅遊主題) ---
         const WORD_DATA = [
-            { word: "Adventure",  pos: "n./v.", chinese: "冒險" },
-            { word: "Delighted",  pos: "adj.",  chinese: "高興的" },
-            { word: "Dream",      pos: "n./v.", chinese: "夢想" },
-            { word: "Enjoy",      pos: "v.",    chinese: "享受" },
-            { word: "Grumbled",   pos: "v.",    chinese: "抱怨" },
-            { word: "Moonlight",  pos: "n.",    chinese: "月光" },
-            { word: "Neighbor",   pos: "n.",    chinese: "鄰居" },
-            { word: "Nighttime",  pos: "n.",    chinese: "深夜" },
-            { word: "Starry",     pos: "adj.",  chinese: "繁星點點的" },
-            { word: "Flashlight", pos: "n.",    chinese: "手電筒" },
+            { word: "common",   pos: "adj.",    chinese: "常見的/普通的" },
+            { word: "costume",  pos: "n.",      chinese: "服裝/戲服" },
+            { word: "custom",   pos: "n.",      chinese: "習俗/風俗" },
+            { word: "favorite", pos: "adj./n.", chinese: "最喜愛的" },
+            { word: "parade",   pos: "n.",      chinese: "遊行" },
+            { word: "surround", pos: "v.",      chinese: "環繞/圍繞" },
+            { word: "travel",   pos: "v./n.",   chinese: "旅遊/旅行" },
+            { word: "wonder",   pos: "v./n.",   chinese: "想知道/驚奇" },
+            { word: "dumpling", pos: "n.",      chinese: "水餃/餃子" },
+            { word: "welcome",  pos: "v./adj.", chinese: "歡迎" },
         ];
 
         // 圖示組件
@@ -75,7 +75,7 @@
                             </button>
                         </div>
 
-                        {/* 反面: 單字意義面 */}
+                        {/* 反面: 單字意義面 (包含發音按鈕) */}
                         <div className="absolute inset-0 backface-hidden bg-white rounded-2xl shadow-xl border-4 border-indigo-500 flex flex-col items-center justify-between p-6 rotate-y-180 text-center">
                             <div className="flex flex-col items-center w-full mt-4">
                                 <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-md text-xs font-bold mb-3">{data.pos}</span>
@@ -114,7 +114,7 @@
                 }
             }, []);
 
-            // 發音邏輯 (免 API 版)
+            // 優化後的發音邏輯 (免 API 版本)
             const speakWord = useCallback((word) => {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(word);
@@ -130,8 +130,8 @@
                     <div className="max-w-7xl mx-auto">
                         <header className="text-center mb-12">
                             <div className="inline-block bg-indigo-600 text-white px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-lg">海洋家</div>
-                            <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight italic">Weekly Flashcards</h1>
-                            <p className="text-slate-500 font-medium tracking-wide">互動式雙面發音系統</p>
+                            <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight italic underline decoration-indigo-200 underline-offset-8">Weekly Flashcards</h1>
+                            <p className="text-slate-500 font-medium tracking-wide">本週主題：文化體驗與旅遊探索</p>
                             
                             {!isVoiceReady && (
                                 <p className="mt-4 text-amber-500 text-xs animate-pulse-soft font-bold">
@@ -149,7 +149,7 @@
                         <footer className="mt-20 text-center border-t border-slate-200 pt-8">
                             <p className="text-slate-400 text-xs font-bold uppercase tracking-widest leading-loose">
                                 海洋家 英語數位教材<br/>
-                                本週進度：10 組核心單字
+                                本週進度：10 組核心單字更新完成
                             </p>
                         </footer>
                     </div>

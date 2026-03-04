@@ -48,12 +48,17 @@
 
     <script>
         /**
-         * 自動生成 15 個每週單字連結按鈕
+         * 自動生成每週單字連結按鈕（排除 w7, w8）
          */
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('links-grid');
             
             for (let i = 1; i <= 15; i++) {
+                // 邏輯判斷：如果是第 7 週或第 8 週則跳過
+                if (i === 7 || i === 8) {
+                    continue;
+                }
+
                 // 建立連結元素
                 const link = document.createElement('a');
                 link.href = `w${i}.html`;
